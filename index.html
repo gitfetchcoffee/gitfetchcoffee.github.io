@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <script src="https://unpkg.com/@uploadcare/file-uploader@1/web/uc-file-uploader.min.js"></script>
+  </head>
 
-<h2>Upload file</h2>
+  <body>
+    <h2>Upload file</h2>
 
-<input
-  type="hidden"
-  role="uploadcare-uploader"
-  data-public-key="0ee804cfe478f47f8ffb"
-/>
-
-<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
-
-</body>
+    <uc-file-uploader
+      pubkey="0ee804cfe478f47f8ffb">
+    </uc-file-uploader>
+  </body>
 </html>
