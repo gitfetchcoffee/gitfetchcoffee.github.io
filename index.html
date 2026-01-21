@@ -1,56 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>File Upload</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Activity 4 – Forensic Incident Analysis</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0f0f0f;
-      color: #ffffff;
-      margin: 0;
-      padding: 20px;
-    }
+        textarea {
+            width: 100%;
+            height: 90vh;
+            padding: 15px;
+            box-sizing: border-box;
 
-    h1 {
-      margin-bottom: 10px;
-    }
+            background-color: white;
+            color: white; /* Text is white */
+            
+            border: 1px solid #ccc;
+            resize: none;
 
-    p {
-      margin-bottom: 20px;
-      color: #cccccc;
-    }
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap; /* Preserves spacing */
+        }
 
-    .fallback {
-      margin-top: 15px;
-    }
-
-    a {
-      color: #4ea1ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    iframe {
-      width: 100%;
-      height: 700px;
-      border: none;
-      border-radius: 8px;
-      background-color: #ffffff;
-    }
-  </style>
+        /* If you want the text visible later, change:
+           color: black;
+        */
+    </style>
 </head>
 <body>
 
-  <div class="fallback">
-    <p>If the upload box doesn’t load, <a href="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au" target="_blank">click here to upload</a>.</p>
-  </div>
+<textarea readonly>
+## Activity 4 – Forensic Incident Analysis
+
+### Evidence item: Cibero Estro’s memo
+
+Method of acquiring the evidence:
+Internal email sent by Cibero Estro to Viro D’Ordino one day after the incident.
+
+Evidence detail:
+The memo states that Cibero did not initially consider the incident to be a data breach. She believed the data provided by the attackers was not from an active boat and was likely test data. While she acknowledged the possibility that the data could have originated from CSA systems, she discounted this on the basis that a real attacker would have supplied a more convincing and complete data set.
+
+Evidence reliability:
+Moderately reliable. The email is a first-hand account from a senior individual and was sent shortly after the incident. However, it represents an early judgement rather than a forensic conclusion and is based on assumptions about attacker behaviour rather than confirmed technical evidence.
+
+Conclusions:
+This evidence shows that CSA management initially downplayed the seriousness of the incident. While Cibero’s reasoning is logical, it relies heavily on expectation rather than proof. As a result, the memo alone cannot rule out a data breach and instead highlights the need for further technical investigation.
+
+---
+
+### Evidence item: Ransom email sent to the Minister
+
+Method of acquiring the evidence:
+Email received directly by the Minister and reviewed by investigators.
+
+Evidence detail:
+The ransom demand was sent using a temporary email service operated by a US-based company. The service deletes accounts after 24 hours and retains minimal logs. Payment was requested in Bitcoin to an unused wallet address. The ransom amount was specified in US dollars. The email demonstrated knowledge of CSA systems, including reference to diagnostic data, recent system changes, and CSA’s role in international sailing events.
+
+Evidence reliability:
+Reliable. The email was directly received by the intended recipient and its contents were corroborated by multiple witnesses. While attribution details are limited, the email itself is genuine.
+
+Conclusions:
+The use of disposable email services and cryptocurrency suggests a level of planning and experience. References to CSA systems indicate either insider knowledge or detailed observation. However, the use of US-based services and US dollars is circumstantial and cannot conclusively determine attacker location. This evidence raises the possibility of an insider or someone with close access to CSA operations.
+
+---
+
+### Evidence item: Data table supplied by the attackers
+
+Method of acquiring the evidence:
+Attached to the ransom email as proof of data possession.
+
+Evidence detail:
+The data table contains inconsistencies when compared to known CSA datasets. Although it claims to originate from the 27th, timestamps and values do not align with legitimate records. The layout resembles a diagnostic interface used during CSA testing, but several expected columns are missing and the file size is smaller than normal test datasets. Telemetry data is normally transmitted over encrypted 5G links, though encryption was still being configured during late November.
+
+Evidence reliability:
+Low reliability. The inconsistencies and incomplete structure mean the data cannot be confidently verified as genuine operational data.
+
+Conclusions:
+The table is likely either altered test data or a fabricated sample based on insider knowledge. While it does not conclusively prove a data breach, its resemblance to internal testing layouts suggests some level of legitimate exposure to CSA systems or processes.
+
+---
+
+### Evidence item: Juna Spertulo’s report
+
+Method of acquiring the evidence:
+Internal investigation report provided to Viro D’Ordino.
+
+Evidence detail:
+Juna’s report concludes that the incident was likely opportunistic and limited in scope. It supports the view that the data table does not represent live operational data and may have been sourced during testing. The report highlights potential exposure during CSA events and visits, where systems or displays may have been visible. It also notes that although strong passwords were in place, misconfiguration or credential reuse could not be fully ruled out.
+
+Evidence reliability:
+Reliable. The report is based on technical analysis and aligns with timelines and other evidence. However, some conclusions rely on inference due to the absence of definitive forensic artefacts.
+
+Conclusions:
+This report supports the view that any compromise was limited and did not involve a full system breach. It strengthens the argument that the attackers relied on opportunity rather than advanced technical exploitation.
+
+---
+
+### Evidence item: Network diagram
+
+Method of acquiring the evidence:
+Provided by CSA management as part of internal documentation.
+
+Evidence detail:
+The diagram shows data transmission from offshore teams via encrypted 5G to a cell tower, then through an administrative switch to virtual servers. Team members access their data through premium Wi-Fi within accommodation areas. A visitor centre switch is connected to the main network infrastructure.
+
+Evidence reliability:
+Reliable. The diagram is an official CSA document, though it lacks precise physical placement details.
+
+Conclusions:
+The diagram identifies potential access points rather than proving compromise. The visitor centre switch and premium Wi-Fi present plausible on-site attack vectors if misconfigured. Remote interception of encrypted 5G data appears unlikely.
+
+---
+
+### Overall conclusion
+
+Taken together, the evidence does not support a large-scale or technically advanced cyber attack. The ransom email and data table indicate some knowledge of CSA systems, but the quality and structure of the data strongly suggest the use of test or non-operational information. Juna Spertulo’s report and the network diagram both point towards limited, opportunistic exposure, most plausibly occurring on-site during events or visits. While the possibility of an insider cannot be dismissed, the most likely explanation is that the attackers gained partial knowledge through observation or limited access rather than a direct breach of live CSA systems. This conclusion remains provisional due to the lack of definitive forensic proof.
+</textarea>
 
 </body>
 </html>
-
