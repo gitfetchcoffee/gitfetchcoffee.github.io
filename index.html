@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Activity 4 – Forensic Incident Analysis</title>
+    <title>Activity 4 & 5 – Incident Analysis and Security Report</title>
     <style>
         body {
             background-color: white;
@@ -13,33 +13,29 @@
 
         textarea {
             width: 100%;
-            height: 90vh;
+            height: 95vh;
             padding: 15px;
             box-sizing: border-box;
 
             background-color: white;
-            color: white; /* Text is white */
-            
+            color: white;
+
             border: 1px solid #ccc;
             resize: none;
 
             font-family: Arial, sans-serif;
             font-size: 14px;
             line-height: 1.5;
-            white-space: pre-wrap; /* Preserves spacing */
+            white-space: pre-wrap;
         }
-
-        /* If you want the text visible later, change:
-           color: black;
-        */
     </style>
 </head>
 <body>
 
 <textarea readonly>
-## Activity 4 – Forensic Incident Analysis
+Activity 4 – Forensic Incident Analysis
 
-### Evidence item: Cibero Estro’s memo
+Evidence item: Cibero Estro’s memo
 
 Method of acquiring the evidence:
 Internal email sent by Cibero Estro to Viro D’Ordino one day after the incident.
@@ -53,9 +49,8 @@ Moderately reliable. The email is a first-hand account from a senior individual 
 Conclusions:
 This evidence shows that CSA management initially downplayed the seriousness of the incident. While Cibero’s reasoning is logical, it relies heavily on expectation rather than proof. As a result, the memo alone cannot rule out a data breach and instead highlights the need for further technical investigation.
 
----
 
-### Evidence item: Ransom email sent to the Minister
+Evidence item: Ransom email sent to the Minister
 
 Method of acquiring the evidence:
 Email received directly by the Minister and reviewed by investigators.
@@ -69,9 +64,8 @@ Reliable. The email was directly received by the intended recipient and its cont
 Conclusions:
 The use of disposable email services and cryptocurrency suggests a level of planning and experience. References to CSA systems indicate either insider knowledge or detailed observation. However, the use of US-based services and US dollars is circumstantial and cannot conclusively determine attacker location. This evidence raises the possibility of an insider or someone with close access to CSA operations.
 
----
 
-### Evidence item: Data table supplied by the attackers
+Evidence item: Data table supplied by the attackers
 
 Method of acquiring the evidence:
 Attached to the ransom email as proof of data possession.
@@ -85,9 +79,8 @@ Low reliability. The inconsistencies and incomplete structure mean the data cann
 Conclusions:
 The table is likely either altered test data or a fabricated sample based on insider knowledge. While it does not conclusively prove a data breach, its resemblance to internal testing layouts suggests some level of legitimate exposure to CSA systems or processes.
 
----
 
-### Evidence item: Juna Spertulo’s report
+Evidence item: Juna Spertulo’s report
 
 Method of acquiring the evidence:
 Internal investigation report provided to Viro D’Ordino.
@@ -101,9 +94,8 @@ Reliable. The report is based on technical analysis and aligns with timelines an
 Conclusions:
 This report supports the view that any compromise was limited and did not involve a full system breach. It strengthens the argument that the attackers relied on opportunity rather than advanced technical exploitation.
 
----
 
-### Evidence item: Network diagram
+Evidence item: Network diagram
 
 Method of acquiring the evidence:
 Provided by CSA management as part of internal documentation.
@@ -117,11 +109,45 @@ Reliable. The diagram is an official CSA document, though it lacks precise physi
 Conclusions:
 The diagram identifies potential access points rather than proving compromise. The visitor centre switch and premium Wi-Fi present plausible on-site attack vectors if misconfigured. Remote interception of encrypted 5G data appears unlikely.
 
----
 
-### Overall conclusion
+Overall conclusion
 
 Taken together, the evidence does not support a large-scale or technically advanced cyber attack. The ransom email and data table indicate some knowledge of CSA systems, but the quality and structure of the data strongly suggest the use of test or non-operational information. Juna Spertulo’s report and the network diagram both point towards limited, opportunistic exposure, most plausibly occurring on-site during events or visits. While the possibility of an insider cannot be dismissed, the most likely explanation is that the attackers gained partial knowledge through observation or limited access rather than a direct breach of live CSA systems. This conclusion remains provisional due to the lack of definitive forensic proof.
+
+
+Activity 5 – Security Report
+
+Introduction
+
+This report evaluates how CSA handled the incident in relation to forensic procedures, security measures, and existing security documentation. It identifies weaknesses observed during the incident and proposes realistic improvements to reduce the likelihood and impact of similar incidents in the future. The recommendations are based on the conclusions drawn in Activity 4.
+
+Review of forensic procedures followed
+
+During the incident, CSA followed several appropriate forensic practices. Key individuals were involved early, including senior management and technical staff, and evidence such as the ransom email and supplied data table was preserved for analysis. The incident was escalated internally and investigated rather than immediately dismissed, which reduced the risk of evidence loss.
+
+However, the initial response relied heavily on judgement rather than formal forensic validation. Early assumptions that the incident did not represent a data breach influenced the pace and depth of investigation. There is limited evidence that a structured forensic process, such as formal evidence logging or maintaining a clear chain of custody, was followed for digital artefacts.
+
+Improvement: CSA should introduce a standard digital forensics workflow for security incidents. This should include formal evidence preservation, logging of who accessed evidence, and clear escalation thresholds to ensure assumptions do not delay investigation.
+
+Evaluation of security measures in place
+
+The investigation identified that CSA’s core infrastructure was reasonably secure. Telemetry data was transmitted over encrypted 5G connections and stored in segmented virtual servers, reducing the likelihood of large-scale remote compromise. Strong passwords were also required for access to team data.
+
+Despite this, several weaknesses were identified. Access during CSA events and visits presented opportunities for exposure, particularly where systems or displays may have been visible to visitors. In addition, the reliance on configuration accuracy and password discipline meant that misconfiguration or credential reuse could have allowed limited access without triggering alerts.
+
+Improvement: CSA should implement stricter access controls during events, including disabling or isolating non-essential systems and enforcing screen-lock policies. Regular configuration audits and the introduction of multi-factor authentication would reduce the risk of unauthorised access caused by human error.
+
+Evaluation of security documentation
+
+CSA’s existing security and incident management documentation outlines roles and responsibilities during a security incident. This provided a framework for internal coordination and helped ensure the incident was addressed at a management level.
+
+However, the documentation does not clearly distinguish between suspected and confirmed data breaches, nor does it mandate specific forensic actions at each stage. This ambiguity contributed to early uncertainty over the severity of the incident and allowed personal judgement to influence decision-making.
+
+Improvement: Security documentation should be updated to include a clear incident classification system, with defined actions for each category. The policy should explicitly require forensic validation before dismissing a suspected breach and include guidance on handling incidents involving ransom demands.
+
+Conclusion
+
+Overall, CSA responded to the incident in a measured and professional manner, but several weaknesses limited the effectiveness of the response. Improvements to forensic procedures, tighter access controls during events, and clearer security documentation would reduce reliance on assumptions and strengthen CSA’s ability to respond to future incidents. These recommendations are proportionate to the scale of the incident and address the vulnerabilities identified during the investigation.
 </textarea>
 
 </body>
