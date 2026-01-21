@@ -3,60 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>File Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body { font-family: sans-serif; padding: 40px; }
-    input, button { margin: 10px 0; padding: 10px; font-size: 16px; }
-    a { color: blue; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #cccccc;
+    }
+
+    .fallback {
+      margin-top: 15px;
+    }
+
+    a {
+      color: #4ea1ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffffff;
+    }
   </style>
 </head>
 <body>
+
   <h1>Upload a File</h1>
+  <p>Select a file below to upload it. No account is required.</p>
 
-  <input type="file" id="fileInput" />
-  <button id="uploadBtn">Upload</button>
+  <iframe
+    src="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au">
+  </iframe>
 
-  <p id="status"></p>
+  <div class="fallback">
+    <p>If the upload box doesn’t load, <a href="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au" target="_blank">click here to upload</a>.</p>
+  </div>
 
-  <!-- Supabase JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-  <script>
-    // ⚠️ Replace these with your actual Supabase info
-    const supabaseUrl = 'https://nsnyokjdypprddjwpkrr.supabase.co'; // e.g., https://abc123xyz.supabase.co
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5zbnlva2pkeXBwcmRkandwa3JyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NjU4MzMsImV4cCI6MjA4NDU0MTgzM30.2yB24B42S3Z6Cl0efdo1xU16ZfsbL9ZIaSvor2-QJd0'; // your anon key
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-    const input = document.getElementById('fileInput');
-    const btn = document.getElementById('uploadBtn');
-    const status = document.getElementById('status');
-
-    btn.addEventListener('click', async () => {
-      const file = input.files[0];
-      if (!file) return alert('Select a file first');
-
-      status.textContent = 'Uploading...';
-
-      try {
-        // Upload file to Supabase Storage
-        const { data, error } = await supabase.storage
-          .from('uploads') // bucket name
-          .upload(file.name, file, { cacheControl: '3600', upsert: true });
-
-        if (error) throw error;
-
-        // Get public URL
-        const { data: urlData, error: urlError } = supabase.storage
-          .from('uploads')
-          .getPublicUrl(file.name);
-
-        if (urlError) throw urlError;
-
-        status.innerHTML = `Upload successful! <br><a href="${urlData.publicUrl}" target="_blank">Access file here</a>`;
-      } catch (err) {
-        console.error(err);
-        status.textContent = 'Upload failed: ' + err.message;
-      }
-    });
-  </script>
 </body>
 </html>
-
