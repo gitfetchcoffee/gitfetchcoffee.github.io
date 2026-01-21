@@ -1,20 +1,32 @@
-<input type="file" id="fileInput">
-<button onclick="uploadFile()">Upload</button>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+
+<input type="file" id="fileInput" />
+<button id="uploadBtn">Upload</button>
+<p id="status"></p>
 
 <script>
-async function uploadFile() {
-  const file = document.getElementById('fileInput').files[0];
-  if (!file) return alert("Select a file first!");
+  const supabaseUrl = 'YOUR_SUPABASE_URL';
+  const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-  const formData = new FormData();
-  formData.append("file", file);
+  const input = document.getElementById('fileInput');
+  const btn = document.getElementById('uploadBtn');
+  const status = document.getElementById('status');
 
-  const res = await fetch('https://file.io', {
-    method: 'POST',
-    body: formData
+  btn.addEventListener('click', async () => {
+    const file = input.files[0];
+    if (!file) return alert('Select a file first');
+
+    const { data, error } = await supabase.storage
+      .from('uploads')
+      .upload(file.name, file);
+
+    if (error) {
+      status.textContent = 'Upload failed: ' + error.message;
+    } else {
+      // Optional: get a public URL to access it anywhere
+      const { data: urlData } = supabase.storage.from('uploads').getPublicUrl(file.name);
+      status.innerHTML = `Upload successful! <a href="${urlData.publicUrl}" target="_blank">Access file here</a>`;
+    }
   });
-
-  const data = await res.json();
-  alert("Your file URL: " + data.link);
-}
 </script>
