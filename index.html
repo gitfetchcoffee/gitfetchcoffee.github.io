@@ -1,127 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>New Tab</title>
-    <style>
-        body {
-            background-color: #ffffff;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.5;
-            white-space: pre-wrap;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>File Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #cccccc;
+    }
+
+    .fallback {
+      margin-top: 15px;
+    }
+
+    a {
+      color: #4ea1ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffffff;
+    }
+  </style>
 </head>
 <body>
-1. Access via Visitor WiFi - Major - Medium
-Unauthorised users can gain access to the CSA's internal systems via the Visitor WiFi which is open to everyone. Since the Visitor WiFi network is intentionally open and does not need any authentication, an attacker could go unnoticed for a long time before suspicious behaviour is caught. The attacker connected to the network could scan the network and use misconfigured routing or firewall rules to reach the internal systems, leading to the attacker being able to access internal data and services, disrupt CSA operations, or commit further attacks on the other networks by escalating their privileges or via potential improper segmentation between the visitor and other networks. 
 
-Solution:
-Strict Network segmentation (VLAN, seperate logical network)
-Enforce Firewall rules blocking visitor to access internal data.
+  <h1>Upload a File</h1>
+  <p>Select a file below to upload it. No account is required.</p>
 
-Alternative:
-Limit Visitor WiFi to basic internet access only
-Physically seperate Visitor network infrastructure.
+  <iframe
+    src="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au">
+  </iframe>
 
-Justification:
-Segmentation lets CSA keep required open WiFi while protecting systems.
-Firewalls enforce strict rules to set boundaries.
-More practical & Cost Effective.
+  <div class="fallback">
+    <p>If the upload box doesn’t load, <a href="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au" target="_blank">click here to upload</a>.</p>
+  </div>
 
-2. Shared Premium WiFi password
-Attackers can try to gain access to the Premium WiFi by guessing or brute forcing the WPAS passcode. Since the Premium WiFi is shared among many visitors, it could end up being leaked, leading to a potential attacker getting access to the passcode, which would allow them to gain access to internal systems or escalating privileges to potentially commit further attacks. This could go unnoticed for a while as the Premium WiFi is a rather large network.
-
-Solution:
-Individual user authentication
-Regular password rotation
-Logging of connected users.
-
-Alternative:
-Stronger shared password
-Limiting WiFi coverage
-
-Justification:
-Individual authentication allows for traceability per user.
-Maintains usability while lowering risk.
-
-3. Interception of Data over 5G Transmission - Moderate - Low
-An attacker could intercept data transmissions over the 5G connections, such as the sailing data, through misconfigured endpoints or compromised devices which allows the attacker to gain access to any data packets that may have been transmitted through the 5G transmission. This could lead to the loss of sensitive performance data which could affect the sailing teams. 
-
-Solution:
-End2end encryption of data
-Secure authentication of sending and receiving devices
-
-Alternative:
-Local data storage only
-Manual transfer of data via physical media
-
-Justification:
-End-to-end protects data even if transmission is intercepted
-Maintains 5G high speed data transfer infrastructure making it more practical.
-
-4. Unauthorised access via security booth connection to admin network - Major - Unlikely
-An attacker could gain access to internal CSA systems, including all staff devices, servers and the virtual servers hosting the team data, which could lead to data loss or breach, service disruption for further attacks to the systems. Since the security booth is connected to the admininistrator network via switches, whilst also being located in a publicly accessible area and not being an IT-controlled environment, an individual could gain physical access to the Admin Network. This is caused by poor network segmentation and unnecessary access to the Admin network whilst not requiring privileges.
-
-Solution
-- Network Segmentation
-- Port security
-- Access Control
-
-Alternative
-- Removing network access from the booth
-
-Justification:
-Segmentation enforces privilege setting
-Port security prevents external device connection
-Maintains operation of security booth
-
-5. Lack of Monitoring
-Without monitoring software implemented to the system, attacks can occur without detection. There was no mention of Network traffic monitoring or security logs and alerts set up, which in-turn allows the attacker to gain
-access via the WiFi connections or silently attack the system without anyone knowing. This also leads to staff becoming more likely to plan an attack themselves. The lack of a monitoring software causes more damage to occur before the cause is discovered, which is detrimental to a wireless heavy environment such as CSA.
-
-Solution:
-Centralised logging
-Real time alerts for suspicious activity
-
-Alternative:
-Manual log reviews
-Monitoring only critical servers
-
-Justification:
-Allows for early detection for fast incident response
-Needed for wireless heavy area
-Reduces impact of attacks.
-
-6. Physical Access to Ethernet ports in Training Facilities - Major - Likely
-If an attacker was to use an external device to connect to exposed ethernet ports in the training facilities, it allows them to have direct access to the team servers and potential access to the other internal server through adjusting priveleges. They can also infect the server with malware or spyware. This physical access allows them to bypass the WiFi security entirely, and since the facilities are able to be used by visitors, it can be easily accessed.
-
-Solution:
-Disable unused ports
-Implement port security (MAC Address specific)
-
-Alternative:
-Physical port blocks
-Wireless reliance
-
-Justification:
-Port security allows for controlled wired access without hindering functionality
-Maintains usability while lowering risk.
-
-7. Access to CSA Staff mobile devices - Likely - Low
-CSA Staff utilize their mobile devices using a connection to the Varma Loko cell tower which is a public telecommuncations tower used by many others, which makes their devices vulnerable to any attacks via the 5G connection. This will allow them to access CSA systems or data through the devices, and they can stay anonymous as it is done outside of the CSA network. This allows them to make remote attacks that bypasses security implementations on the CSA network.
-
-Solution:
-Utilize private CSA controlled connection.
-Monitor and alert for suspicious activity.
-
-Alternative:
-Rely on Android security
-
-Justification:
-Allows for control via CSA systems and network. 
-Reduces risk without hindering operations.
 </body>
 </html>
-
