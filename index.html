@@ -1,32 +1,48 @@
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload</title>
+</head>
+<body>
+  <h1>Upload a File</h1>
 
-<input type="file" id="fileInput" />
-<button id="uploadBtn">Upload</button>
-<p id="status"></p>
+  <input type="file" id="fileInput" />
+  <button id="uploadBtn">Upload</button>
 
-<script>
-  const supabaseUrl = 'YOUR_SUPABASE_URL';
-  const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  <p id="status"></p>
 
-  const input = document.getElementById('fileInput');
-  const btn = document.getElementById('uploadBtn');
-  const status = document.getElementById('status');
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+  <script>
+    // ⚠️ Replace these with your own project info
+    const supabaseUrl = 'YOUR_SUPABASE_URL'; // e.g., https://abc123xyz.supabase.co
+    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'; // your anon key
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-  btn.addEventListener('click', async () => {
-    const file = input.files[0];
-    if (!file) return alert('Select a file first');
+    const input = document.getElementById('fileInput');
+    const btn = document.getElementById('uploadBtn');
+    const status = document.getElementById('status');
 
-    const { data, error } = await supabase.storage
-      .from('uploads')
-      .upload(file.name, file);
+    btn.addEventListener('click', async () => {
+      const file = input.files[0];
+      if (!file) return alert('Select a file first');
 
-    if (error) {
-      status.textContent = 'Upload failed: ' + error.message;
-    } else {
-      // Optional: get a public URL to access it anywhere
-      const { data: urlData } = supabase.storage.from('uploads').getPublicUrl(file.name);
-      status.innerHTML = `Upload successful! <a href="${urlData.publicUrl}" target="_blank">Access file here</a>`;
-    }
-  });
-</script>
+      status.textContent = 'Uploading...';
+
+      // Upload file to Supabase Storage
+      const { data, error } = await supabase.storage
+        .from('uploads') // bucket name
+        .upload(file.name, file, { cacheControl: '3600', upsert: true });
+
+      if (error) {
+        status.textContent = 'Upload failed: ' + error.message;
+      } else 
+        // Get public URL
+        const { data: urlData } = supabase.storage.from('uploads').getPublicUrl(file.name);
+        status.innerHTML = `Upload successful! <br><a href="${urlData.publicUrl}" target="_blank">Access file here</a>`;
+      }
+    });
+  </script>
+</body>
+</html>
