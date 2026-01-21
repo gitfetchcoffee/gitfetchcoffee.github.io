@@ -4,59 +4,26 @@
   <meta charset="UTF-8">
   <title>File Upload</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0f0f0f;
-      color: #ffffff;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin-bottom: 20px;
-      color: #cccccc;
-    }
-
-    .fallback {
-      margin-top: 15px;
-    }
-
-    a {
-      color: #4ea1ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    iframe {
-      width: 100%;
-      height: 700px;
-      border: none;
-      border-radius: 8px;
-      background-color: #ffffff;
-    }
-  </style>
 </head>
 <body>
 
-  <h1>Upload a File</h1>
-  <p>Select a file below to upload it. No account is required.</p>
+  <h1>Upload a file</h1>
+  <p>Select a file and submit. No account required.</p>
 
-  <iframe
-    src="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au">
-  </iframe>
+  <form
+    name="file-upload"
+    method="POST"
+    data-netlify="true"
+    enctype="multipart/form-data">
 
-  <div class="fallback">
-    <p>If the upload box doesn’t load, <a href="https://www.dropbox.com/request/siUY6BIiavGOLT9eB7Au" target="_blank">click here to upload</a>.</p>
-  </div>
+    <input type="hidden" name="form-name" value="file-upload">
+
+    <input type="file" name="file" required>
+
+    <br><br>
+
+    <button type="submit">Upload</button>
+  </form>
 
 </body>
 </html>
